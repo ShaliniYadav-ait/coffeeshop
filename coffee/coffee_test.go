@@ -21,8 +21,12 @@ func TestGetCoffees(t *testing.T) {
 						Price: 3,
 					},
 					{
-						Name:  "cappuccino",
-						Price: 2.5,
+						Name:  "Cappuccino",
+						Price: 2.75,
+					},
+					{
+						Name:  "Flat White",
+						Price: 2.25,
 					},
 				},
 			},
