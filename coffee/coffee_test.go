@@ -46,3 +46,41 @@ func TestGetCoffees(t *testing.T) {
 		})
 	}
 }
+
+func TestIsCoffeeAvailable(t *testing.T) {
+	Coffees, _ := GetCoffees()
+	type args struct {
+		coffees    CoffeeList
+		coffeetype string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "check for Cappuccino",
+			args: args{
+				coffees:    *Coffees,
+				coffeetype: "Cappuccino",
+			},
+			want: true,
+		},
+		{
+			name: "check for Chai",
+			args: args{
+				coffees:    *Coffees,
+				coffeetype: "Chai",
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			if got := IsCoffeeAvailable(tt.args.coffeetype); got != tt.want {
+				t.Errorf("IsCoffeeAvailable() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
