@@ -1,7 +1,34 @@
 package coffee
 
-var coffees = map[string]float32{"Latte":2.5, "Cappuccino": 2.75, "Flat White": 2.25} 
+import (
+	"fmt"
 
-func GetCoffees() map[string]float32 {
-	return coffees
+	"github.com/spf13/viper"
+)
+
+type CoffeeDetails struct {
+	Name  string
+	Price float32
+}
+
+type CoffeeList struct {
+	List []CoffeeDetails
+}
+
+var Coffees CoffeeList
+
+func GetCoffees() (*CoffeeList, error) {
+	viper.AddConfigPath(".")
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Println("fatal error config file: %w", err)
+		return nil, err
+	}
+
+	err = viper.Unmarshal(&Coffees)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Coffees, nil
 }
