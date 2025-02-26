@@ -17,4 +17,5 @@ func main() {
 		result := fmt.Sprintf("%s for $%v", element.Name, element.Price)
 		fmt.Println(result)
 	}
+	fmt.Println("Is Latte Available? ", coffee.IsCoffeeAvailable("Latte"))
 }
