@@ -23,6 +23,7 @@ func HTMLCoffeeDetails(c *gin.Context) {
 		},
 	)
 }
+
 func CoffeeDetails(c *gin.Context) {
 	coffeelist, _ := coffee.GetCoffees()
 	c.String(http.StatusOK, " %s", coffeelist)
