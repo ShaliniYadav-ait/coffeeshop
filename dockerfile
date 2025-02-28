@@ -7,4 +7,4 @@ RUN go mod tidy
 RUN go build -o coffeeshop .
 
 CMD ["./coffeeshop"]
-EXPOSE 8081
+# EXPOSE 8081
