@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -39,7 +39,7 @@ func TestPing(t *testing.T) {
 			},
 			want: want{
 				expectedResponseCode: http.StatusOK,
-				expectedBody:         "{\"message\":\"Welcome to the Coffeeshop!\"}",
+				expectedBody: "{\"message\":\"Welcome to the Coffeeshop!\"}",
 			},
 		},
 	}
@@ -47,7 +47,7 @@ func TestPing(t *testing.T) {
 		req := getRequest(tt.args.method, tt.args.path)
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, req)
-		body, _ := ioutil.ReadAll(w.Body)
+		body, _ := io.ReadAll(w.Body)
 		if tt.want.expectedBody != string(body) {
 			t.Errorf("Expected '%v', but got '%v'", tt.want.expectedBody, string(body))
 		}
@@ -55,9 +55,6 @@ func TestPing(t *testing.T) {
 		if tt.want.expectedResponseCode != w.Code {
 			t.Errorf("Expected '%v', but got '%v'", tt.want.expectedResponseCode, w.Code)
 		}
-		// t.Run(tt.name, func(t *testing.T) {
-		// 	Ping(tt.args.c)
-		// })
 	}
 }
 
@@ -96,7 +93,7 @@ func TestCoffeeDetails(t *testing.T) {
 		req := getRequest(tt.args.method, tt.args.path)
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, req)
-		body, _ := ioutil.ReadAll(w.Body)
+		body, _ := io.ReadAll(w.Body)
 		if tt.want.expectedBody != string(body) {
 			t.Errorf("Expected '%v', but got '%v'", tt.want.expectedBody, string(body))
 		}
