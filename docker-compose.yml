@@ -1,0 +1,9 @@
+# version: 'v2.32.4-desktop.1'
+services:
+    my_service_1:
+      image: coffeeshop_app
+      ports: 
+        - "8088:8085"
+      env_file: 
+        - config.env
+      
