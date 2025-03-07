@@ -15,6 +15,6 @@ func main() {
 	r.GET("/home", handler.HTMLCoffeeDetails)
 	r.GET("/ping", handler.Ping)
 	r.GET("/coffee", handler.CoffeeDetails)
-	fmt.Println("Starting the server at port ", portNumber)
+	fmt.Println("Starting the server at the port number ", portNumber)
 	r.Run(fmt.Sprintf(":%s", portNumber))        
 }
